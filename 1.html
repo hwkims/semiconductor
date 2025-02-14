@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Chemical Solutions for FPD & Semiconductor</title>
+    <style>
+        /* (Same CSS as before, but with font-family adjusted for English) */
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'SF Pro Text', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; /* Apple-like font stack */
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        /* ... (rest of the CSS remains the same) ... */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 3.2em;
+            font-weight: 800;
+            margin-bottom: 0.7em;
+            color: #111;
+            letter-spacing: -0.02em;
+        }
+        h2 {
+            font-size: 2.2em;
+            margin-bottom: 0.6em;
+            color: #333;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        h3 {
+            font-size: 1.6em;
+            margin-bottom: 0.8em;
+            color: #444;
+            font-weight: 600;
+        }
+        p {
+            margin-bottom: 1.2em;
+            font-size: 1.05em;
+            color: #555;
+        }
+        ul {
+            list-style: none;
+            margin-left: 0;
+            margin-bottom: 1em;
+            padding-left: 0;
+        }
+         li::before {
+            content: "•"; /* Custom bullet point */
+            color: #007aff; /* Apple blue */
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        .section {
+            padding: 60px 0;
+            position: relative;
+        }
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(240, 240, 240, 0.3);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        .section:hover::before {
+            opacity: 1;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-in {
+            animation: slideIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        @keyframes listItemSlideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .key-properties ul li {
+            animation: listItemSlideIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            animation-delay: calc(0.1s * var(--list-item-index)); /* Staggered delay */
+        }
+        @media (max-width: 768px) {
+            .container { width: 95%; }
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.8em; }
+            h3 { font-size: 1.4em; }
+            .material-concept { flex-direction: column; }
+            .material-concept .image-container { margin-right: 0; margin-bottom: 1em; }
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 1.5em;
+        }
+        th, td {
+          border: none;
+          padding: 10px 12px;
+          text-align: left;
+          border-bottom: 1px solid #eee;
+        }
+        th {
+          background-color: transparent;
+          font-weight: 600;
+          color: #333;
+        }
+        .image-container {
+            text-align: center;
+            margin-bottom: 1.5em;
+        }
+        .image-container span {
+            font-size: 4em;
+            display: inline-block;
+        }
+        .material-concept {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2.5em;
+            padding: 20px;
+            border-radius: 12px;
+             background-color: rgba(250,250,250, 0.7);
+        }
+
+        .material-concept .image-container {
+            flex: 0 0 35%;
+            margin-right: 30px;
+        }
+
+        .material-concept .text-content {
+            flex: 1;
+        }
+        .target-application {
+            background-color: #f2f7ff;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 2.5em;
+            box-shadow: 0 4px 8px rgba(0, 122, 255, 0.1);
+        }
+
+        .target-application h3 {
+            color: #007aff;
+            margin-bottom: 0.6em;
+            font-weight: 700;
+        }
+        .product-features {
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 2.5em;
+            background-color: rgba(250,250,250, 0.7);
+        }
+
+        .product-features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .product-features li {
+            margin-bottom: 0.8em;
+            padding-left: 0; /* Remove extra padding */
+
+        }
+          .product-features li::before{
+            content: '→'; /* Use an arrow */
+            margin-right: 8px;
+          }
+        .key-properties {
+             margin-bottom: 2em;
+        }
+
+          .key-properties h3 {
+            margin-bottom: 1em;
+            margin-top: 1.5em;
+        }
+
+        .key-properties ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-properties li {
+            background-color: #fff;
+            padding: 18px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+
+        }
+
+        .key-properties li:hover{
+             transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+        }
+
+        .key-properties strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 1.1em;
+            color: #222;
+            font-weight: 600;
+        }
+        .key-properties span{
+            color: #444;
+        }
+        #application iframe {
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .download-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007aff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1em;
+            margin-top: 1rem;
+
+        }
+
+        .download-button:hover {
+            background-color: #0056b3;
+             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Game Styles */
+        #game-container {
+            width: 100%;
+            height: 400px; /* Adjust as needed */
+            background-color: #eee;
+            border-radius: 12px;
+            margin-bottom: 2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+             position: relative;
+        }
+
+        /* Paddle Styles */
+        .paddle {
+            position: absolute;
+            width: 10px;
+            height: 80px;
+            background-color: #007aff; /* Apple Blue */
+            border-radius: 5px;
+        }
+
+        #player-paddle {
+            left: 20px;
+            top: calc(50% - 40px); /* Center vertically */
+        }
+
+        #computer-paddle {
+            right: 20px;
+            top: calc(50% - 40px);
+        }
+
+        /* Ball Styles */
+        #ball {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #ff3b30; /* Apple Red */
+            border-radius: 50%; /* Make it a circle */
+            top: calc(50% - 7.5px); /* Center initially */
+            left: calc(50% - 7.5px);
+        }
+
+         /* Start Button Styles */
+        #start-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px 20px;
+            background-color: #007aff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            z-index: 10; /* Ensure it's above the ball and paddles */
+        }
+
+        #start-button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+         /* Score Display */
+        #score-display {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5em;
+            color: #555;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="section animate-slide-in" id="intro">
+            <h1>Advanced Chemical Solutions for<br>FPD & Semiconductor Manufacturing</h1>
+            <p>This document delves into state-of-the-art chemical materials used in the fabrication of advanced displays (FPD) and semiconductors. We explore the underlying science, focusing on their performance attributes, practical uses, and key benefits.</p>
+        </section>
+
+        <section class="section animate-slide-in" id="display">
+            <h2>Display Technologies</h2>
+
+            <div class="material-concept">
+               <div class="image-container">
+                <span>🧪</span>
+              </div>
+              <div class="text-content">
+                <h3>Aqueous Strippers</h3>
+                <p>Aqueous strippers are an environmentally conscious alternative to traditional solvent-based solutions in display manufacturing. They effectively remove photoresist and other polymeric residues without damaging underlying layers.</p>
+                </div>
+            </div>
+
+            <div class="target-application">
+                <h3>Target Applications</h3>
+                <p>Primarily used in TFT-LCD and OLED display manufacturing for removing photoresist after patterning. Also applicable for cleaning photomasks and other components.</p>
+            </div>
+
+            <div class="product-features">
+                <h3>Key Advantages of Aqueous Strippers:</h3>
+                <ul>
+                    <li>Environmentally Friendly: Reduced VOC emissions.</li>
+                    <li>High Efficiency: Complete removal of various photoresist types.</li>
+                    <li>Material Compatibility: Compatible with glass, ITO, and metals.</li>
+                    <li>Cost-Effective: Lower overall process cost due to reduced waste.</li>
+                    <li>Safety: Improved worker safety due to reduced flammability.</li>
+                </ul>
+            </div>
+
+             <div class="material-concept">
+                <div class="image-container">
+                   <span>💡</span>
+                </div>
+              <div class="text-content">
+                <h3>LTOC (Low-Temperature Organic Compound) for OLED</h3>
+                <p>LTOC materials are specialized organic compounds for OLED display fabrication. They form thin-film layers with specific optical and electrical properties, enabling high-performance OLED devices.</p>
+            </div>
+            </div>
+              <div class="key-properties">
+                 <h3>Key Properties & Performance Metrics</h3>
+                <ul>
+                    <li style="--list-item-index: 0;"><strong>High Transparency:</strong> 98% transmission (T%) at 400nm.</li>
+                    <li style="--list-item-index: 1;"><strong>Precise Resolution:</strong> Achieves 10µm Line & Space (L&S).</li>
+                    <li style="--list-item-index: 2;"><strong>Rapid Photo-Speed:</strong> 90mJ/cm² photo-speed.</li>
+                    <li style="--list-item-index: 3;"><strong>Controlled Mask C.D.:</strong> Precise control over critical dimensions.</li>
+                    <li style="--list-item-index: 4;"><strong>Optimized Taper Angle:</strong> Ensures proper layer formation.</li>
+                    <li style="--list-item-index: 5;"><strong>Well-Defined Contact Holes:</strong> For reliable connections.</li>
+
+                </ul>
+            </div>
+
+             <div class="target-application">
+                <h3>Target Applications</h3>
+                <p>Touch Panel for Flexible OLED, Low-temperature curing (below 100℃), OLED Pixel Defined Layer (PDL).</p>
+            </div>
+
+            <div class="material-concept">
+               <div class="image-container">
+                <span>⚫</span>
+              </div>
+              <div class="text-content">
+                <h3>Black Resist for OLED</h3>
+                <p>Black resist materials are essential for high-contrast OLED displays, acting as light-blocking layers to prevent leakage and improve image quality.</p>
+                </div>
+            </div>
+
+            <div class="key-properties">
+             <h3>Key Properties:</h3>
+              <ul>
+                 <li style="--list-item-index: 0;"><strong>High Optical Density (O.D):</strong> O.D = 1.0/µm.</li>
+                 <li style="--list-item-index: 1;"><strong>Standard Developer Compatibility:</strong> 2.38% TMAH Development.</li>
+                 <li style="--list-item-index: 2;"><strong>Fine Resolution:</strong> 14µm Hole resolution.</li>
+                 <li style="--list-item-index: 3;"><strong>Two Types:</strong> Cardo-based and Siloxane-based.</li>
+              </ul>
+            </div>
+            <div class="target-application">
+                <h3>Target Applications</h3>
+                <p>Light blocking, Anti-reflection, Pixel Define Layer, R, G, B Pattern.</p>
+            </div>
+
+            <div class="material-concept">
+                <div class="image-container">
+                    <span>🛡️</span>
+                </div>
+              <div class="text-content">
+                <h3>Photo-sensitive Polyimide (PSPI)</h3>
+                <p>PSPIs are advanced materials used in microelectronics for their thermal stability, chemical resistance, and dielectric properties, combining polyimide benefits with photolithographic patterning.</p>
+               </div>
+               </div>
+                <div class="key-properties">
+              <h3>Key Features & Types:</h3>
+                <ul>
+                    <li style="--list-item-index: 0;">
+                      <strong>Type 1. Conventional PSPI:</strong>
+                      <span>g, h, i-line UV sensitive. 2.38% TMAH development, Positive type. High resolution.</span>
+                    </li>
+                    <li style="--list-item-index: 1;">
+                      <strong>Type 2. ULK (Ultra Low-K) PSPI:</strong>
+                      <span>High Photo-speed, 2.38% TMAH development, Positive type, Ultra Low-K (Dk=2.7 @1MHz).</span>
+                    </li>
+                    <li style="--list-item-index: 2;"><strong>Relatively high T%</strong></li>
+                    <li style="--list-item-index: 3;"><strong>Low water absorption</strong></li>
+                    <li style="--list-item-index: 4;"><strong>High thermal stability</strong></li>
+                     <li style="--list-item-index: 5;"><strong>Solar UV resistance</strong></li>
+                </ul>
+               </div>
+
+              <div class="material-concept">
+                <div class="image-container">
+                   <span>🔥</span>
+                </div>
+               <div class="text-content">
+                <h3>High Thermal Stability Polyimide Resin</h3>
+                <p>These resins are designed for applications requiring exceptional thermal resistance and low CTE, crucial for flexible electronics and high-temperature uses.</p>
+              </div>
+              </div>
+
+            <div class="key-properties">
+               <h3>Key Properties (LTPI-01):</h3>
+                <ul>
+                   <li style="--list-item-index: 0;"><strong>High Thermal Resistance:</strong> TD 5% [℃] = 576.96.</li>
+                   <li style="--list-item-index: 1;"><strong>Low CTE:</strong> [ppm/℃] = 4.13.</li>
+                   <li style="--list-item-index: 2;"><strong>Excellent Mechanical Property:</strong>
+                      <ul>
+                          <li>Tensile Strength [MPa] = 192.8</li>
+                          <li>Modulus [GPa] = 7.9</li>
+                       </ul>
+                    </li>
+                    <li style="--list-item-index: 3;"><strong>Folding Endurance:</strong> Folding(MIT) TEST [cycle] > 150,000.</li>
+                   <li style="--list-item-index: 4;"><strong>Smooth Surface:</strong> Suitable for high-precision applications.</li>
+
+                </ul>
+             </div>
+              <div class="material-concept">
+                   <div class="image-container">
+                    <span>🔆</span>
+                </div>
+              <div class="text-content">
+                <h3>Micro-lens Array (MLA)</h3>
+                <p>MLAs enhance light extraction and brightness in OLED displays. These materials enable precise formation of micro-scale lens structures.</p>
+             </div>
+             </div>
+
+            <div class="key-properties">
+               <h3>Key Features:</h3>
+              <ul>
+                  <li style="--list-item-index: 0;">g, h, i-line UV sensitive.</li>
+                  <li style="--list-item-index: 1;">2.38% TMAH development, Negative type.</li>
+                  <li style="--list-item-index: 2;">Round Shape MLA Pattern.</li>
+                  <li style="--list-item-index: 3;">Enhancement OLED Brightness.</li>
+                  <li style="--list-item-index: 4;">Relatively high T%.</li>
+                  <li style="--list-item-index: 5;">Low-temperature cure.</li>
+                  <li style="--list-item-index: 6;">Round shape pattern formation.</li>
+                </ul>
+            </div>
+
+        </section>
+
+        <section class="section animate-slide-in" id="semiconductor">
+            <h2>Semiconductor Fabrication</h2>
+
+             <div class="material-concept">
+               <div class="image-container">
+                 <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAP5SURBVHhe7Zp5qBVVFMcnEaggKogjKggKIjGKoiIKiooYdRFUURG1EH9ERdGrogsh+gNEBMIgIggKAgJ9hZba3tY8WGu7s/d97e7s3j1re2fWmnv2+j3W2mvttc0aa+291po7EAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoHgrgMeyfS/VkmvkpwjW9kC/W5fJ/KuybeSvEHyV0kWYIe0tYn+bOkpZIXSPqGZECSp0h+Iul/cQcST4gqU+xW9z/3PJJ2uN8X5GgAAAABJRU5ErkJggg=="></span>
+              </div>
+               <div class="text-content">
+                <h3>Bump Photoresist Remover</h3>
+                <p>Specialized chemicals designed for complete removal of photoresist in wafer bumping, critical for interconnects in advanced packaging.</p>
+            </div>
+            </div>
+
+             <div class="product-features">
+              <h3>Key Features:</h3>
+              <ul>
+                <li>Single Spray & Dip Equipment Available.</li>
+                <li>Anti-corrosion for Metal (Au, Ti, Cu).</li>
+                <li>Remove completely Positive and Negative PR.</li>
+              </ul>
+            </div>
+
+             <div class="target-application">
+                <h3>Target Applications</h3>
+                <p>Wafer-level packaging, 3D IC packaging, and other advanced packaging.</p>
+            </div>
+
+             <div class="material-concept">
+              <div class="image-container">
+                <span>💧</span>
+              </div>
+              <div class="text-content">
+                <h3>Via Etch Post-Etch Residue (PER) Remover</h3>
+                <p>Formulated to clean residues after via etching, ensuring clean and reliable via connections.</p>
+               </div>
+               </div>
+              <div class="product-features">
+              <h3>Key Features:</h3>
+              <ul>
+                <li>Single Spray & Dip Equipment Available.</li>
+                <li>Anti-corrosion for Metal (Au, Ti, Cu, Al).</li>
+                <li>Remove completely PER in VIA Hole.</li>
+              </ul>
+             </div>
+
+               <div class="target-application">
+                <h3>Target Applications</h3>
+                <p>Via cleaning in integrated circuit fabrication.</p>
+            </div>
+
+              <div class="material-concept">
+                <div class="image-container">
+                    <span>🧱</span>
+                </div>
+              <div class="text-content">
+                <h3>Negative Photo-sensitive Polyimide (for Semiconductor)</h3>
+                <p>A polyimide used as a dielectric layer, offering thermal and chemical stability, and patternable via photolithography.</p>
+            </div>
+            </div>
+             <div class="key-properties">
+               <h3>Key Features:</h3>
+                <ul>
+                   <li style="--list-item-index: 0;">i-line UV Patternable.</li>
+                   <li style="--list-item-index: 1;">Solvent developable negative type PSPI.</li>
+                   <li style="--list-item-index: 2;">Low-temperature cure (200℃).</li>
+                   <li style="--list-item-index: 3;">Tg = 206℃ (measured by DSC).</li>
+                   <li style="--list-item-index: 4;">TGA 5wt% loss Temp. = 321℃.</li>
+                </ul>
+             </div>
+
+               <div class="target-application">
+                <h3>Target Applications</h3>
+                <p>Dielectric layers, passivation layers, and stress buffer layers.</p>
+            </div>
+
+        </section>
+
+        <section class="section animate-slide-in" id="ceramic">
+          <h2>Ceramic Materials</h2>
+          <div class="material-concept">
+               <div class="image-container">
+                <span>⚪</span>
+              </div>
+              <div class="text-content">
+            <h3>SOFC Solid Electrolyte 8-YSZ</h3>
+            <p>8-YSZ (8 mol% Yttria-Stabilized Zirconia) is a high-performance ceramic used as a solid electrolyte in SOFCs, with high ionic conductivity and stability.</p>
+             </div>
+            </div>
+
+            <div class="product-features">
+            <h3>Key Features & Properties (8-YSZ - C):</h3>
+                <ul>
+                  <li>Appearance: White powder.</li>
+                  <li>BET: 7±2 m²/g.</li>
+                  <li>Granule size D50 μm: 50-70 μm.</li>
+                  <li>Loss on ignition: 1.5% max.</li>
+                  <li>Chemical Composition:
+                    <ul>
+                      <li>ZrO₂ + HfO₂ + Y₂O₃ + Al₂O₃: min. 99.9 wt%</li>
+                      <li>Y₂O₃: 13.3 wt%</li>
+                      <li>Al₂O₃, SiO₂, Fe₂O₃, TiO₂, Na₂O: 0.01% max (each)</li>
+                    </ul>
+                  </li>
+                   <li>Mechanical Properties:
+                      <ul>
+                          <li>Bending Strength: 1000-1200 MPa.</li>
+                          <li>Hardness (Hv10): 1250.</li>
+                       </ul>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="target-application">
+                <h3>Target Applications</h3>
+                <p>Solid Oxide Fuel Cells (SOFCs) for power generation.</p>
+            </div>
+
+            <div class="material-concept">
+            <div class="image-container">
+                    <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAP5SURBVHhe7Zp5qBVVFMcnEaggKogjKggKIjGKoiIKiooYdRFUURG1EH9ERdGrogsh+gNEBMIgIggKAgJ9hZba3tY8WGu7s/d97e7s3j1re2fWmnv2+j3W2mvttc0aa+291po7EAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoHgrgMeyfS/VkmvkpwjW9kC/W5fJ/KuybeSvEHyV0kWYIe0tYn+bOkpZIXSPqGZECSp0h+Iul/cQcST4gqU+xW9z/3PJJ2uN8X5GgAAAABJRU5ErkJggg=="></span>
+                </div>
+               <div class="text-content">
+            <h3>SOFC Metal Separator Development</h3>
+            <p>Metal separators are key in SOFC stacks, providing support, gas separation, and electrical conductivity. They are designed for high performance and durability.</p>
+            </div>
+            </div>
+              <div class="product-features">
+              <h3>Key Features:</h3>
+              <ul>
+                <li>High electrical conductivity.</li>
+                <li>Low gas permeability.</li>
+                <li>Stability in oxidizing/reducing atmospheres.</li>
+                <li>Similar thermal expansion coefficient to cell components.</li>
+                <li>High mechanical strength and flatness at high temperatures.</li>
+                <li>Easy to form and process.</li>
+              </ul>
+              </div>
+
+              <div class="target-application">
+                <h3>Target Applications</h3>
+                <p>Solid Oxide Fuel Cells (SOFCs), especially for high-temperature use.</p>
+            </div>
+
+        </section>
+
+        <!-- Game Section -->
+        <section class="section animate-slide-in" id="game">
+            <h2>Interactive Game: Pong</h2>
+            <div id="game-container">
+                <button id="start-button">Start Game</button>
+                <div id="score-display">0 : 0</div>
+                <div id="player-paddle" class="paddle"></div>
+                <div id="computer-paddle" class="paddle"></div>
+                <div id="ball"></div>
+            </div>
+        </section>
+
+
+        <section class="section animate-slide-in" id="application">
+           <h2>Job Application</h2>
+          <p>
+              <iframe src="https://docs.google.com/gview?url=https://github.com/hwkims/semiconductor/raw/main/입사지원서_김현우.docx&embedded=true" style="width:100%; height:700px;" frameborder="0"></iframe>
+          </p>
+          <p>
+            Alternatively, you can download the application form directly:
+          </p>
+            <a href="https://github.com/hwkims/semiconductor/raw/main/입사지원서_김현우.docx" download class="download-button">Download Application Form</a>
+
+        </section>
+
+    </div>
+      <script>
+        // Intersection Observer for animations
+        const sections = document.querySelectorAll('.section');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // --- Game Script ---
+        const playerPaddle = document.getElementById('player-paddle');
+        const computerPaddle = document.getElementById('computer-paddle');
+        const ball = document.getElementById('ball');
+        const startButton = document.getElementById('start-button');
+        const scoreDisplay = document.getElementById('score-display');
+        const gameContainer = document.getElementById('game-container'); // Get the container
+
+        let ballX, ballY, ballSpeedX, ballSpeedY;
+        let playerScore = 0;
+        let computerScore = 0;
+        let gameInterval;
+        let gameRunning = false;
+
+
+         // Function to start or reset the game
+        function startGame() {
+             if (gameRunning) return; // Prevent multiple starts
+
+            gameRunning = true;
+            startButton.style.display = 'none'; // Hide start button
+            resetBall();
+            clearInterval(gameInterval); // Clear any existing interval
+
+            gameInterval = setInterval(() => {
+                moveBall();
+                moveComputerPaddle();
+                checkCollision();
+                checkScore();
+            }, 1000 / 60); // Update game 60 times per second (60 FPS)
+        }
+          // Function to reset the ball to the center
+        function resetBall() {
+            ballX = gameContainer.offsetWidth / 2;
+            ballY = gameContainer.offsetHeight / 2;
+             // Randomize initial ball direction
+            ballSpeedX = (Math.random() > 0.5 ? 5 : -5);
+            ballSpeedY = (Math.random() * 6 - 3); // Random vertical speed
+              //Randomize again
+            ballSpeedX = (Math.random() > 0.5 ? 5 : -5) * (Math.random() * 1.5 + 0.8);
+            ballSpeedY = (Math.random() * 6 - 3) * (Math.random() * 1.5 + 0.8);
+
+            ball.style.left = `${ballX}px`;
+            ball.style.top = `${ballY}px`;
+        }
+
+
+        function moveBall() {
+            ballX += ballSpeedX;
+            ballY += ballSpeedY;
+
+            ball.style.left = `${ballX}px`;
+            ball.style.top = `${ballY}px`;
+        }
+
+        function moveComputerPaddle() {
+            // Simple AI: Follow the ball's Y position
+            const computerPaddleCenter = computerPaddle.offsetTop + computerPaddle.offsetHeight / 2;
+            if (computerPaddleCenter < ballY - 10) {
+                computerPaddle.style.top = `${computerPaddle.offsetTop + 5}px`; // Move down
+            } else if (computerPaddleCenter > ballY + 10) {
+                computerPaddle.style.top = `${computerPaddle.offsetTop - 5}px`; // Move up
+            }
+
+            // Ensure paddle stays within bounds
+            const maxTop = gameContainer.offsetHeight - computerPaddle.offsetHeight;
+            if(parseInt(computerPaddle.style.top) > maxTop){
+                computerPaddle.style.top = `${maxTop}px`;
+            } else if(parseInt(computerPaddle.style.top) < 0) {
+                computerPaddle.style.top = `0px`;
+            }
+        }
+
+
+        function checkCollision() {
+          // Bounce off top/bottom walls
+          if (ballY <= 0 || ballY + ball.offsetHeight >= gameContainer.offsetHeight) {
+              ballSpeedY = -ballSpeedY;
+          }
+
+          // Check collision with player paddle
+          if (ballX <= playerPaddle.offsetLeft + playerPaddle.offsetWidth &&
+              ballY + ball.offsetHeight >= playerPaddle.offsetTop &&
+              ballY <= playerPaddle.offsetTop + playerPaddle.offsetHeight) {
+              ballSpeedX = -ballSpeedX;
+
+              // Add some vertical influence based on where the ball hits the paddle
+              let deltaY = ballY - (playerPaddle.offsetTop + playerPaddle.offsetHeight / 2);
+              ballSpeedY = deltaY * 0.2;  // Adjust this factor as needed
+
+          }
+
+            // Check collision with computer paddle
+            if (ballX + ball.offsetWidth >= computerPaddle.offsetLeft &&
+              ballY + ball.offsetHeight >= computerPaddle.offsetTop &&
+              ballY <= computerPaddle.offsetTop + computerPaddle.offsetHeight) {
+                ballSpeedX = -ballSpeedX;
+
+                // Add vertical influence for computer paddle as well
+                let deltaY = ballY - (computerPaddle.offsetTop + computerPaddle.offsetHeight / 2);
+                ballSpeedY = deltaY * 0.2;
+            }
+        }
+
+        function checkScore() {
+            // Player scores
+            if (ballX + ball.offsetWidth >= gameContainer.offsetWidth) {
+                playerScore++;
+                resetBall();
+                updateScoreDisplay();
+                ballSpeedX = -5; // Reset ball speed and direction
+
+            }
+            // Computer scores
+            else if (ballX <= 0) {
+                computerScore++;
+                resetBall();
+                updateScoreDisplay();
+                ballSpeedX = 5; // Reset ball speed and direction
+            }
+
+            if(playerScore >= 5 || computerScore >=5){
+              endGame();
+            }
+        }
+
+        function updateScoreDisplay() {
+            scoreDisplay.textContent = `${playerScore} : ${computerScore}`;
+        }
+
+          function endGame() {
+            clearInterval(gameInterval);
+            gameRunning = false;
+            let winner = playerScore > computerScore ? "Player" : "Computer";
+             alert(`${winner} wins!`);
+             playerScore = 0;
+             computerScore = 0;
+             updateScoreDisplay();
+
+            startButton.style.display = 'block'; // Show start button again
+        }
+
+        // Event Listeners
+        startButton.addEventListener('click', startGame);
+
+        // Player paddle control (mouse)
+        gameContainer.addEventListener('mousemove', (e) => {
+            // Calculate the relative Y position within the game container
+            let mouseY = e.clientY - gameContainer.getBoundingClientRect().top;
+
+            // Keep the paddle centered on the mouse, but within bounds
+            let paddleTop = mouseY - playerPaddle.offsetHeight / 2;
+
+            const maxTop = gameContainer.offsetHeight - playerPaddle.offsetHeight;
+            if(paddleTop > maxTop){
+                playerPaddle.style.top = `${maxTop}px`
+            } else if(paddleTop < 0) {
+                playerPaddle.style.top = `0px`;
+            } else {
+                playerPaddle.style.top = `${paddleTop}px`;
+            }
+        });
+
+         // Player paddle control (touch) - for mobile devices
+        gameContainer.addEventListener('touchmove', (e) => {
+            e.preventDefault(); // Prevent scrolling
+            let touchY = e.touches[0].clientY - gameContainer.getBoundingClientRect().top;
+
+            let paddleTop = touchY - playerPaddle.offsetHeight / 2;
+            const maxTop = gameContainer.offsetHeight - playerPaddle.offsetHeight;
+
+            if(paddleTop > maxTop){
+              playerPaddle.style.top = `${maxTop}px`;
+            } else if(paddleTop < 0) {
+              playerPaddle.style.top = '0px';
+            } else {
+              playerPaddle.style.top = `${paddleTop}px`;
+            }
+        });
+
+    </script>
+</body>
+</html>
