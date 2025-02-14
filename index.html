@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Chemical Solutions for FPD & Semiconductor</title>
+    <style>
+        /* Reset & Basic Styles */
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Typography & Section Styles */
+        h1 {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+            color: #222;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            color: #444;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 0.2em;
+        }
+        h3 {
+            font-size: 1.8em;
+            margin-bottom: 0.5em;
+            color: #666;
+        }
+        p {
+            margin-bottom: 1em;
+            font-size: 1.1em;
+        }
+        ul {
+            list-style: disc;
+            margin-left: 20px;
+            margin-bottom: 1em;
+        }
+        .section {
+            padding: 50px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        /* Animations & Effects */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container { width: 90%; }
+            h1 { font-size: 2.5em; }
+            h2 { font-size: 2em; }
+            h3 { font-size: 1.5em; }
+        }
+
+         /* Custom Scrollbar (Optional) - Modern Look */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Table Styles */
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 1em;
+        }
+        th, td {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: left;
+        }
+        th {
+          background-color: #f2f2f2;
+        }
+
+        /* Image Styles */
+        .image-container {
+            text-align: center; /* Center images */
+            margin-bottom: 1.5em;
+        }
+        .image-container img {
+            max-width: 100%; /* Make images responsive */
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px; /* Optional: Add rounded corners */
+        }
+
+        /* Material Concept Section (Specific Styles) */
+        .material-concept {
+            display: flex;            /* Use flexbox for layout */
+            align-items: center;      /* Vertically center items */
+            margin-bottom: 2em;      /* Add some spacing below */
+        }
+
+        .material-concept .image-container {
+            flex: 0 0 40%;            /* Image takes 40% of the width */
+            margin-right: 20px;     /* Space between image and text */
+        }
+
+        .material-concept .text-content {
+            flex: 1;                 /* Text takes the remaining space */
+        }
+
+        .material-concept h3 {
+            margin-bottom: 0.5em;  /* Spacing below the heading */
+        }
+
+         /* Target Application Section */
+        .target-application {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 2em;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .target-application h3 {
+            color: #555;
+            margin-bottom: 0.5em;
+        }
+
+        .target-application p {
+             font-style: italic;
+        }
+
+          /* Product Features Section */
+        .product-features {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 2em;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-features ul {
+            list-style: none; /* Remove bullet points */
+            padding: 0;
+        }
+
+        .product-features li {
+            margin-bottom: 0.5em;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        /* Checkmark Icon (Using Pseudo-element) */
+        .product-features li::before {
+            content: '✓'; /* Checkmark Unicode character */
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #28a745;  /* Green color for checkmark */
+            font-weight: bold;
+        }
+
+        /* Key Properties Section */
+        .key-properties {
+             margin-bottom: 2em;
+        }
+        .key-properties h3{
+            margin-top: 1.5em;
+            margin-bottom: .7em;
+        }
+
+        .key-properties ul {
+            display: grid;  /* Use CSS Grid */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+            gap: 20px;       /* Space between grid items */
+            list-style: none;
+            padding: 0;
+
+        }
+
+        .key-properties li {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .key-properties strong{
+            display: block; /* Make property name bold and on its own line */
+            margin-bottom: 5px;
+            font-size: 1.2em;
+        }
+
+        .key-properties span{
+            /* Style for the property value */
+            color: #555;
+            font-size: 1em;
+
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="section animate-fade-in" id="intro">
+            <h1>Advanced Chemical Solutions for FPD & Semiconductor Manufacturing</h1>
+            <p>This document details cutting-edge chemical materials and their applications in advanced display (FPD) and semiconductor fabrication processes.  We explore the science behind these materials, focusing on performance characteristics and practical applications.</p>
+        </section>
+
+        <section class="section animate-fade-in" id="display">
+            <h2>Display Technologies</h2>
+
+            <div class="material-concept">
+               <div class="image-container">
+                <img src="https://via.placeholder.com/400x250?text=Stripper+Concept" alt="Stripper Concept Image">
+              </div>
+              <div class="text-content">
+                <h3>Aqueous Strippers for Display Manufacturing</h3>
+                <p>Aqueous-based strippers represent a significant advancement in display fabrication, offering an environmentally conscious alternative to traditional solvent-based solutions.  These strippers are formulated to effectively remove photoresist and other polymeric residues from display panels without damaging underlying sensitive layers.</p>
+                </div>
+            </div>
+
+            <div class="target-application">
+                <h3>Target Applications</h3>
+                <p>Primarily used in the manufacturing of TFT-LCD and OLED displays for the removal of photoresist materials after patterning processes.  Also applicable in the cleaning of photomasks and other components.</p>
+            </div>
+
+            <div class="product-features">
+                <h3>Key Advantages of Aqueous Strippers:</h3>
+                <ul>
+                    <li>Environmentally Friendly: Reduced VOC (Volatile Organic Compound) emissions.</li>
+                    <li>High Efficiency:  Complete removal of various types of photoresist.</li>
+                    <li>Material Compatibility:  Designed to be compatible with various substrate materials (glass, ITO, metals).</li>
+                    <li>Cost-Effective:  Often lower overall process cost due to reduced waste disposal and handling requirements.</li>
+                    <li>Safety:  Improved worker safety due to reduced flammability and toxicity.</li>
+                </ul>
+            </div>
+
+             <div class="material-concept">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/400x250?text=LTOC+Concept" alt="LTOC Concept Image">
+                </div>
+              <div class="text-content">
+                <h3>LTOC (Low-Temperature Organic Compound) for OLED</h3>
+                <p>LTOC materials are specialized organic compounds designed for use in OLED (Organic Light-Emitting Diode) display fabrication.  They play a crucial role in forming thin-film layers with specific optical and electrical properties, enabling high-performance OLED devices.</p>
+            </div>
+            </div>
+              <div class="key-properties">
+                 <h3>Key Properties & Performance Metrics</h3>
+                <ul>
+                    <li><strong>High Transparency:</strong>  Transmission rate (T%) of 98% at 400nm wavelength.</li>
+                    <li><strong>Precise Resolution:</strong>  Achieves a resolution of 10µm Line & Space (L&S).</li>
+                    <li><strong>Rapid Photo-Speed:</strong>  Photo-speed of 90mJ/cm².</li>
+                    <li><strong>Controlled Mask C.D.:</strong>  Precise control over critical dimensions.</li>
+                    <li><strong>Optimized Taper Angle:</strong>  Ensures proper layer formation and device performance.</li>
+                    <li><strong>Well-Defined Contact Holes:</strong>  Facilitates reliable electrical connections.</li>
+
+                </ul>
+            </div>
+
+             <div class="target-application">
+                <h3>Target Applications</h3>
+                <p>Touch Panel for Flexible OLED, Low-temperature curing (less than 100℃), OLED Pixel Defined Layer (PDL).</p>
+            </div>
+
+            <div class="material-concept">
+               <div class="image-container">
+                <img src="https://via.placeholder.com/400x250?text=Black+Resist+Concept" alt="Black Resist Concept Image">
+              </div>
+              <div class="text-content">
+                <h3>Black Resist for OLED</h3>
+                <p>Black resist materials are essential for creating high-contrast OLED displays.  They act as light-blocking layers, preventing light leakage and improving the overall image quality.</p>
+                </div>
+            </div>
+
+            <div class="key-properties">
+             <h3>Key Properties:</h3>
+              <ul>
+                <li><strong>High Optical Density (O.D):</strong> O.D = 1.0/µm.</li>
+                <li><strong>Standard Developer Compatibility:</strong> 2.38% TMAH Development.</li>
+                <li><strong>Fine Resolution:</strong>  14µm Hole resolution.</li>
+                <li><strong>Two Types:</strong>  Cardo-based and Siloxane-based black resists are available.</li>
+              </ul>
+            </div>
+            <div class="target-application">
+                <h3>Target Applications</h3>
+                <p>Light blocking, Anti-reflection, Pixel Define Layer, R, G, B Pattern.</p>
+            </div>
+
+            <div class="material-concept">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/400x250?text=PSPI+Concept" alt="PSPI Concept">
+                </div>
+              <div class="text-content">
+                <h3>Photo-sensitive Polyimide (PSPI)</h3>
+                <p>Photo-sensitive polyimides (PSPIs) are advanced materials used in microelectronics for their excellent thermal stability, chemical resistance, and dielectric properties.  They combine the benefits of polyimides with the ability to be patterned using photolithography.</p>
+               </div>
+               </div>
+                <div class="key-properties">
+              <h3>Key Features & Types:</h3>
+                <ul>
+                    <li>
+                      <strong>Type 1. Conventional PSPI:</strong>
+                      <span>g, h, i-line UV sensitive. 2.38% TMAH development, Positive type. High resolution.</span>
+                    </li>
+                    <li>
+                      <strong>Type 2. ULK (Ultra Low-K) PSPI:</strong>
+                      <span>High Photo-speed, 2.38% TMAH development, Positive type, Ultra Low-K (Dk=2.7 @1MHz).</span>
+                    </li>
+                    <li><strong>Relatively high T%</strong></li>
+                    <li><strong>Low water absorption</strong></li>
+                    <li><strong>High thermal stability</strong></li>
+                    <li><strong>Solar UV resistance</strong></li>
+                </ul>
+               </div>
+
+              <div class="material-concept">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/400x250?text=Polyimide+Resin" alt="Polyimide Resin">
+                </div>
+               <div class="text-content">
+                <h3>High Thermal Stability Polyimide Resin</h3>
+                <p>These polyimide resins are designed for applications requiring exceptional thermal resistance and low coefficient of thermal expansion (CTE).  They are crucial for flexible electronics and other high-temperature applications.</p>
+              </div>
+              </div>
+
+            <div class="key-properties">
+               <h3>Key Properties (LTPI-01):</h3>
+                <ul>
+                    <li><strong>High Thermal Resistance:</strong>  TD 5% [℃] = 576.96.</li>
+                    <li><strong>Low CTE:</strong> [ppm/℃] = 4.13.</li>
+                    <li><strong>Excellent Mechanical Property:</strong>
+                      <ul>
+                          <li>Tensile Strength [MPa] = 192.8</li>
+                          <li>Modulus [GPa] = 7.9</li>
+                       </ul>
+                    </li>
+                     <li><strong>Folding Endurance:</strong> Folding(MIT) TEST [cycle] > 150,000.</li>
+                    <li><strong>Smooth Surface:</strong> Suitable for high-precision applications.</li>
+
+                </ul>
+             </div>
+              <div class="material-concept">
+                   <div class="image-container">
+                    <img src="https://via.placeholder.com/400x250?text=MLA+Concept" alt="MLA Concept">
+                </div>
+              <div class="text-content">
+                <h3>Micro-lens Array (MLA)</h3>
+                <p>Micro-lens arrays (MLAs) are used in OLED displays to enhance light extraction efficiency and improve brightness.  These materials allow for the precise formation of micro-scale lens structures.</p>
+             </div>
+             </div>
+
+            <div class="key-properties">
+               <h3>Key Features:</h3>
+              <ul>
+                  <li>g, h, i-line UV sensitive.</li>
+                  <li>2.38% TMAH development, Negative type.</li>
+                  <li>Round Shape MLA Pattern.</li>
+                  <li>Enhancement OLED Brightness.</li>
+                  <li>Relatively high T%.</li>
+                  <li>Low-temperature cure.</li>
+                  <li>Round shape pattern formation.</li>
+                </ul>
+            </div>
+
+        </section>
+
+        <section class="section animate-fade-in" id="semiconductor">
+            <h2>Semiconductor Fabrication</h2>
+
+             <div class="material-concept">
+               <div class="image-container">
+                <img src="https://via.placeholder.com/400x250?text=Bump+PR+Remover" alt="Bump PR Remover Concept">
+              </div>
+               <div class="text-content">
+                <h3>Bump Photoresist Remover</h3>
+                <p>Specialized chemicals designed for the complete removal of photoresist materials used in the bumping process of semiconductor wafer fabrication.  This process is critical for creating interconnects in advanced packaging technologies.</p>
+            </div>
+            </div>
+
+             <div class="product-features">
+              <h3>Key Features:</h3>
+              <ul>
+                <li>Single Spray & Dip Equipment Available.</li>
+                <li>Anti-corrosion for Metal (Au, Ti, Cu).</li>
+                <li>Remove completely Positive and Negative PR.</li>
+              </ul>
+            </div>
+
+             <div class="target-application">
+                <h3>Target Applications</h3>
+                <p>Wafer-level packaging, 3D IC packaging, and other advanced packaging techniques.</p>
+            </div>
+
+             <div class="material-concept">
+              <div class="image-container">
+                <img src="https://via.placeholder.com/400x250?text=PER+Remover" alt="PER Remover Concept">
+              </div>
+              <div class="text-content">
+                <h3>Via Etch Post-Etch Residue (PER) Remover</h3>
+                <p>Formulated to clean and remove residues left behind after the via etching process in semiconductor manufacturing.  Ensures clean and reliable via connections.</p>
+               </div>
+               </div>
+              <div class="product-features">
+              <h3>Key Features:</h3>
+              <ul>
+                <li>Single Spray & Dip Equipment Available.</li>
+                <li>Anti-corrosion for Metal (Au, Ti, Cu, Al).</li>
+                <li>Remove completely PER in VIA Hole.</li>
+              </ul>
+             </div>
+
+               <div class="target-application">
+                <h3>Target Applications</h3>
+                <p>Via cleaning in integrated circuit fabrication.</p>
+            </div>
+
+              <div class="material-concept">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/400x250?text=Negative+PSPI" alt="Negative PSPI image">
+                </div>
+              <div class="text-content">
+                <h3>Negative Photo-sensitive Polyimide (for Semiconductor)</h3>
+                <p>A specialized polyimide material used as a dielectric layer in semiconductor devices.  It offers excellent thermal and chemical stability, and can be patterned using photolithography.</p>
+            </div>
+            </div>
+             <div class="key-properties">
+               <h3>Key Features:</h3>
+                <ul>
+                    <li>i-line UV Patternable.</li>
+                    <li>Solvent developable negative type PSPI.</li>
+                    <li>Low-temperature cure (200℃).</li>
+                    <li>Tg = 206℃ measured by DSC.</li>
+                    <li>TGA 5wt% loss Temp. = 321℃.</li>
+                </ul>
+             </div>
+
+               <div class="target-application">
+                <h3>Target Applications</h3>
+                <p>Dielectric layers, passivation layers, and stress buffer layers in semiconductor devices.</p>
+            </div>
+
+        </section>
+
+        <section class="section animate-fade-in" id="ceramic">
+          <h2>Ceramic Materials</h2>
+          <div class="material-concept">
+               <div class="image-container">
+                <img src="https://via.placeholder.com/400x250?text=8-YSZ+Powder" alt="8-YSZ Powder">
+              </div>
+              <div class="text-content">
+            <h3>SOFC Solid Electrolyte 8-YSZ</h3>
+            <p>8-YSZ (8 mol% Yttria-Stabilized Zirconia) is a high-performance ceramic material used as a solid electrolyte in Solid Oxide Fuel Cells (SOFCs).  It exhibits high ionic conductivity and stability at elevated temperatures.</p>
+             </div>
+            </div>
+
+            <div class="product-features">
+            <h3>Key Features & Properties (8-YSZ - C):</h3>
+                <ul>
+                  <li>Appearance: White powder.</li>
+                  <li>BET: 7±2 m²/g.</li>
+                  <li>Granule size D50 μm: 50-70 μm.</li>
+                  <li>Loss on ignition: 1.5% max.</li>
+                  <li>Chemical Composition:
+                    <ul>
+                      <li>ZrO₂ + HfO₂ + Y₂O₃ + Al₂O₃: min. 99.9 wt%</li>
+                      <li>Y₂O₃: 13.3 wt%</li>
+                      <li>Al₂O₃, SiO₂, Fe₂O₃, TiO₂, Na₂O:  0.01% max (each)</li>
+                    </ul>
+                  </li>
+                   <li>Mechanical Properties:
+                      <ul>
+                          <li>Bending Strength: 1000-1200 MPa.</li>
+                          <li>Hardness (Hv10): 1250.</li>
+                       </ul>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="target-application">
+                <h3>Target Applications</h3>
+                <p>Solid Oxide Fuel Cells (SOFCs) for power generation.</p>
+            </div>
+
+            <div class="material-concept">
+            <div class="image-container">
+                    <img src="https://via.placeholder.com/400x250?text=Metal+Separator" alt="SOFC Metal Separator">
+                </div>
+               <div class="text-content">
+            <h3>SOFC Metal Separator Development</h3>
+            <p>Metal separators are key components in SOFC stacks, providing structural support, gas separation, and electrical conductivity.  Advanced metal separators are designed for high performance and durability in the demanding SOFC operating environment.</p>
+            </div>
+            </div>
+              <div class="product-features">
+              <h3>Key Features:</h3>
+              <ul>
+                <li>High electrical conductivity.</li>
+                <li>Low gas permeability.</li>
+                <li>Stability in oxidizing/reducing atmospheres.</li>
+                <li>Similar thermal expansion coefficient to other cell components.</li>
+                <li>High mechanical strength and flatness at high temperatures.</li>
+                <li>Easy to form and process.</li>
+              </ul>
+              </div>
+
+              <div class="target-application">
+                <h3>Target Applications</h3>
+                <p>Solid Oxide Fuel Cells (SOFCs) for power generation, particularly in high-temperature applications.</p>
+            </div>
+
+        </section>
+        <section class="section animate-fade-in" id="application">
+           <h2>Application Form</h2>
+          <p>
+              <!-- Using an iframe to embed the document. -->
+                <!--  You *MUST* replace 'YOUR_GITHUB_USERNAME' and 'YOUR_REPO_NAME'-->
+              <iframe src="https://docs.google.com/gview?url=https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/raw/main/입사지원서_김현우.docx&embedded=true" style="width:100%; height:700px;" frameborder="0"></iframe>
+          </p>
+          <p>
+            Alternatively, you could provide a direct download link: <br>
+            <a href="https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/raw/main/입사지원서_김현우.docx" download>Download Application Form (입사지원서_김현우.docx)</a>
+          </p>
+        </section>
+
+    </div>
+      <script>
+        // Simple JavaScript for smooth scrolling (optional)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>
